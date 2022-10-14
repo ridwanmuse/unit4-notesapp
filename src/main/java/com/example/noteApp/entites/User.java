@@ -1,5 +1,6 @@
 package com.example.noteApp.entites;
 
+import com.example.noteApp.dtos.UserDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +13,9 @@ import java.util.Set;
 @Entity
 @Table(name= "Users")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+
 
 public class User {
     @Id
@@ -51,6 +53,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User(UserDto userDto){
+        if (userDto.getUsername() != null){
+            this.username = userDto.getUsername();
+        }
+        if (userDto.getPassword() != null){
+            this.password = userDto.getPassword();
+        }
     }
 
 }
